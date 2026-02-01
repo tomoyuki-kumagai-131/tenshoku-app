@@ -204,7 +204,8 @@ const applications: JobApplication[] = [];
 
 // ============== Hono App ==============
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 const app = new Hono().basePath('/api');
 
