@@ -2,15 +2,67 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { handle } from 'hono/vercel';
 
-// Import mock data and types
-import type {
-  User,
-  Job,
-  JobApplication,
-  Favorite,
-  Notification,
-  ApiResponse,
-} from '@tenshoku/types';
+// ============== Types ==============
+
+interface User {
+  id: string;
+  email: string;
+  name?: string;
+  phone?: string;
+  address?: string;
+  createdAt: string;
+}
+
+interface Job {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  salary: string;
+  employmentType: string;
+  description: string;
+  requirements: string;
+  skills: string[];
+  benefits: string;
+  imageUrl: string;
+  createdAt: string;
+}
+
+interface JobApplication {
+  id: string;
+  userId: string;
+  jobId: string;
+  name: string;
+  phone: string;
+  address: string;
+  message?: string;
+  status: 'pending' | 'reviewed' | 'accepted' | 'rejected';
+  createdAt: string;
+}
+
+interface Favorite {
+  id: string;
+  userId: string;
+  jobId: string;
+  createdAt: string;
+}
+
+interface Notification {
+  id: string;
+  userId: string;
+  type: 'application_viewed' | 'application_status' | 'new_job' | 'scout' | 'system';
+  title: string;
+  message: string;
+  isRead: boolean;
+  link?: string;
+  createdAt: string;
+}
+
+interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: string;
+}
 
 // ============== Mock Data ==============
 
@@ -151,6 +203,8 @@ const sessions = new Map<string, string>();
 const applications: JobApplication[] = [];
 
 // ============== Hono App ==============
+
+export const runtime = 'edge';
 
 const app = new Hono().basePath('/api');
 
