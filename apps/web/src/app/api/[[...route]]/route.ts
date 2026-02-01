@@ -295,7 +295,9 @@ app.get('/jobs', (c) => {
 });
 
 app.get('/jobs/skills', (c) => {
-  const allSkills = [...new Set(jobs.flatMap((j) => j.skills))];
+  const skillSet = new Set<string>();
+  jobs.forEach((j) => j.skills.forEach((s) => skillSet.add(s)));
+  const allSkills = Array.from(skillSet);
   return c.json(success(allSkills));
 });
 
