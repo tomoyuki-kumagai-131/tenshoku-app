@@ -1,8 +1,14 @@
 # TenShoku - 転職マッチングサービス
 
 IT・Web業界に特化した転職マッチングサービスのプロトタイプです。
+
 <img width="1494" height="824" alt="スクリーンショット 2026-02-01 9 18 40" src="https://github.com/user-attachments/assets/0c2d2fde-3389-40d5-838d-7bfd7184d160" />
 
+## デプロイ
+
+**本番環境**: https://tenshoku-app-web.vercel.app
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/tomoyuki-kumagai-131/tenshoku-app)
 
 ## デモ
 
