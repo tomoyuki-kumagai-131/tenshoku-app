@@ -375,6 +375,13 @@ app.get('/notifications', (c) => {
   return c.json(success({ notifications: userNotifications, unreadCount }));
 });
 
+app.get('/notifications/unread-count', (c) => {
+  const user = getUserFromToken(c.req.header('Authorization'));
+  if (!user) return c.json(error('Unauthorized'), 401);
+  const count = notifications.filter((n) => n.userId === user.id && !n.isRead).length;
+  return c.json(success({ count }));
+});
+
 app.post('/notifications/:id/read', (c) => {
   const user = getUserFromToken(c.req.header('Authorization'));
   if (!user) return c.json(error('Unauthorized'), 401);
@@ -395,3 +402,4 @@ export const GET = handle(app);
 export const POST = handle(app);
 export const PUT = handle(app);
 export const DELETE = handle(app);
+export const OPTIONS = handle(app);
