@@ -839,8 +839,12 @@ function error(message: string): ApiResponse<null> {
 function getUserFromToken(authHeader: string | undefined): User | null {
   if (!authHeader?.startsWith('Bearer ')) return null;
   const token = authHeader.substring(7);
-  const userId = sessions.get(token);
-  return userId ? users.find((u) => u.id === userId) || null : null;
+  // セッションMapを使わず、トークン形式のみチェック（サーバーレス環境対応）
+  // 本番環境ではJWTなど永続化可能な認証方式を使用すべき
+  if (token.startsWith('token_')) {
+    return users[0]; // デモ用：常にテストユーザーを返す
+  }
+  return null;
 }
 
 // Auth routes
