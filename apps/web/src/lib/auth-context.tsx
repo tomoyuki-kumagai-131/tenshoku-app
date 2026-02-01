@@ -24,37 +24,53 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
-      userApi.getMe().then((res) => {
-        if (res.success && res.data) {
-          setUser(res.data);
-          setIsAuthenticated(true);
-        } else {
+      userApi.getMe()
+        .then((res) => {
+          if (res.success && res.data) {
+            setUser(res.data);
+            setIsAuthenticated(true);
+          } else {
+            localStorage.removeItem('token');
+          }
+        })
+        .catch((error) => {
+          console.error('Failed to verify token:', error);
           localStorage.removeItem('token');
-        }
-        setIsLoading(false);
-      });
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     } else {
       setIsLoading(false);
     }
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    const res = await authApi.login({ email, password });
-    if (res.success && res.data) {
-      localStorage.setItem('token', res.data.token);
-      setToken(res.data.token);
-      setUser(res.data.user);
-      setIsAuthenticated(true);
-      return true;
+    try {
+      const res = await authApi.login({ email, password });
+      if (res.success && res.data) {
+        localStorage.setItem('token', res.data.token);
+        setToken(res.data.token);
+        setUser(res.data.user);
+        setIsAuthenticated(true);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Login failed:', error);
+      return false;
     }
-    return false;
   };
 
   const logout = async () => {
     setIsLoggingOut(true);
     // Wait for the loading screen to render
     await new Promise(resolve => setTimeout(resolve, 100));
-    await authApi.logout();
+    try {
+      await authApi.logout();
+    } catch (error) {
+      console.error('Logout API call failed:', error);
+    }
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
