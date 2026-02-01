@@ -164,11 +164,11 @@ export default function JobDetailPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <Header />
 
       {/* Hero Section */}
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 h-80 md:h-96">
           <Image
@@ -267,14 +267,14 @@ export default function JobDetailPage() {
       </div>
 
       {/* Main Content */}
-      <main className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-24">
-        <div className="grid lg:grid-cols-3 gap-8">
+      <main className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-24 w-full">
+        <div className="grid lg:grid-cols-3 gap-8 min-w-0">
           {/* Left Column - Main Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6 min-w-0 overflow-hidden">
             {/* Quick Info Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="bg-white rounded-2xl shadow-lg p-6 overflow-hidden">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
+                <div className="text-center p-4 bg-gray-50 rounded-xl min-w-0">
                   <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -282,18 +282,18 @@ export default function JobDetailPage() {
                     </svg>
                   </div>
                   <p className="text-xs text-gray-500 mb-1">勤務地</p>
-                  <p className="font-medium text-gray-900 text-sm">{job.location}</p>
+                  <p className="font-medium text-gray-900 text-sm break-words">{job.location}</p>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
+                <div className="text-center p-4 bg-gray-50 rounded-xl min-w-0">
                   <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <p className="text-xs text-gray-500 mb-1">年収</p>
-                  <p className="font-medium text-green-600 text-sm">{job.salary}</p>
+                  <p className="font-medium text-green-600 text-sm break-words">{job.salary}</p>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
+                <div className="text-center p-4 bg-gray-50 rounded-xl min-w-0">
                   <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -302,7 +302,7 @@ export default function JobDetailPage() {
                   <p className="text-xs text-gray-500 mb-1">雇用形態</p>
                   <p className="font-medium text-gray-900 text-sm">{job.employmentType}</p>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-xl">
+                <div className="text-center p-4 bg-gray-50 rounded-xl min-w-0">
                   <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -431,16 +431,16 @@ export default function JobDetailPage() {
                 </h2>
               </div>
               <div className="p-6">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 min-w-0">
                   {job.benefits.map((benefit, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 bg-orange-50 text-orange-700 px-4 py-3 rounded-xl"
+                      className="flex items-center gap-2 bg-orange-50 text-orange-700 px-4 py-3 rounded-xl min-w-0"
                     >
                       <svg className="w-5 h-5 text-orange-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-sm font-medium">{benefit}</span>
+                      <span className="text-sm font-medium break-words">{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -449,7 +449,7 @@ export default function JobDetailPage() {
           </div>
 
           {/* Right Column - Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             {/* Apply Card */}
             <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-20">
               <div className="text-center mb-6">
