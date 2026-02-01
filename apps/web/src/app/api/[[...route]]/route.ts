@@ -780,7 +780,14 @@ const jobs: Job[] = [
   },
 ];
 
-let favorites: Favorite[] = [];
+// デモ用：テストユーザーの初期お気に入りデータ（サーバーレス環境対応）
+let favorites: Favorite[] = [
+  { id: 'fav_1', userId: '1', jobId: '1', createdAt: '2024-01-20T10:00:00Z' },
+  { id: 'fav_2', userId: '1', jobId: '3', createdAt: '2024-01-19T15:30:00Z' },
+  { id: 'fav_3', userId: '1', jobId: '5', createdAt: '2024-01-18T09:00:00Z' },
+  { id: 'fav_4', userId: '1', jobId: '10', createdAt: '2024-01-17T14:00:00Z' },
+  { id: 'fav_5', userId: '1', jobId: '15', createdAt: '2024-01-16T11:00:00Z' },
+];
 
 const notifications: Notification[] = [
   {
